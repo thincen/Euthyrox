@@ -1,9 +1,15 @@
 #!/bin/bash
 
 CPSKEY=""
+DEBUG=1
 
 D=$(($(TZ='Asia/Shanghai' date +%s)/86400))
 DOSAGE=$(($D%2+1))
+
+if[ ${DEBUG} -eq 1 ];then
+	echo "day: ${D}"
+	echo "day%2+1: ${DOSAGE}"
+fi
 
 if [ ${DOSAGE} -eq 2 ];then
 	DOSAGE="一颗"
