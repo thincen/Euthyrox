@@ -1,0 +1,17 @@
+name: "Euthyrox"
+
+on:
+  schedule:
+    - cron: '0 23 * * *'
+
+jobs:
+  Push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 'Checkout codes'
+        uses: actions/checkout@v2
+      - name: 'CoolPush'
+        run: |
+          sed -i 's/CPSKEY=""/CPSKEY="${{ secrets.cpskey }}"/' ./Euthyrox.sh
+          bash ./Euthyrox.sh
