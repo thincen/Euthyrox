@@ -3,10 +3,10 @@
 CPSKEY=""
 DEBUG=1
 
-D=$(($(TZ='Asia/Shanghai' date +%s)/86400))
+D=$(($(TZ='Asia/Shanghai' date -d "12:00:00" +%s)/86400))
 DOSAGE=$(($D%2+1))
 
-if[ ${DEBUG} -eq 1 ];then
+if [ ${DEBUG} -eq 1 ];then
 	echo "day: ${D}"
 	echo "day%2+1: ${DOSAGE}"
 fi
