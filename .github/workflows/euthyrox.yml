@@ -14,6 +14,6 @@ jobs:
       - name: 'Cyber Park Push'
         run: |
           sed -i 's/CORID=""/CORID="${{ secrets.corid }}"/' ./Euthyrox.sh
-          sed -i 's/AGENTID=""/AGENTID="${{ secrets.agentid }}"/' ./Euthyrox.sh
+          sed -i 's/AGENTID=0/AGENTID=${{ secrets.agentid }}/' ./Euthyrox.sh
           sed -i 's/APPSECRET=""/APPSECRET="${{ secrets.appsecret }}"/' ./Euthyrox.sh
           bash ./Euthyrox.sh
