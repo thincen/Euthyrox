@@ -11,7 +11,9 @@ jobs:
     steps:
       - name: 'Checkout codes'
         uses: actions/checkout@v2
-      - name: 'CoolPush'
+      - name: 'Cyber Park Push'
         run: |
-          sed -i 's/CPSKEY=""/CPSKEY="${{ secrets.cpskey }}"/' ./Euthyrox.sh
+          sed -i 's/CORID=""/CORID="${{ secrets.corid }}"/' ./Euthyrox.sh
+          sed -i 's/AGENTID=""/AGENTID="${{ secrets.agentid }}"/' ./Euthyrox.sh
+          sed -i 's/APPSECRET=""/APPSECRET="${{ secrets.appsecret }}"/' ./Euthyrox.sh
           bash ./Euthyrox.sh
