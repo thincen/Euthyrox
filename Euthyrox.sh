@@ -25,7 +25,7 @@ else
 	DOSAGE="半颗"
 fi
 
-DATE=$(TZ='Asia/Shanghai' date +%F' '%T)
+#DATE=$(TZ='Asia/Shanghai' date +%F' '%T)
 
 if [ "${ACCESSTOKEN}" == "" ];then
 	RESTOKEN=$(curl -s "https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=${CORID}&corpsecret=${APPSECRET}")
@@ -38,7 +38,7 @@ fi
 
 # echo ${ACCESSTOKEN}
 
-CONTENT="Euthyrox\n\n$(TZ='Asia/Shanghai' date +%F)\n$(TZ='Asia/Shanghai' date +%T)运行完成\n\n剂量：${DOSAGE}"
+CONTENT="Euthyrox\n\n剂量：${DOSAGE}\n\n$(TZ='Asia/Shanghai' date +%F)\n$(TZ='Asia/Shanghai' date +%T)运行完成"
 
 POSTRAW='{"touser":"@all","msgtype":"text","agentid":"'${AGENTID}'","text":{"content":"'${CONTENT}'"}}'
 # echo ${POSTRAW}
@@ -47,8 +47,8 @@ RESPUSH=$(curl -sX POST "https://qyapi.weixin.qq.com/cgi-bin/message/send?access
 -H"Content-type: application/json" \
 -d"${POSTRAW}")
 
-if [ $(echo ${RESPUSH}|grep -E \"code\":0|wc -l) -lt 1 ];then
-	echo ${RES}
+if [ $(echo ${RESPUSH}|grep -E \"errcode\":0|wc -l) -lt 1 ];then
+	echo ${RESPUSH}
 	exit 522
 fi
 echo "push success"
